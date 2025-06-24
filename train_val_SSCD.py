@@ -91,11 +91,12 @@ def main():
 
     # ------- 2. set the directory of training dataset --------
     # data_dir = 'C:/Users/11473/OneDrive/桌面/code/MSCDNet_20220403/DATA/landslide_paper/stage1cd/'
-    data_dir = 'C:/Users/11473/OneDrive/桌面/code/MSCDNet_20220403/DATA/BCD_removeblank_split/'
+    dataset = "bottle"
+    data_dir = f'/home/jovyan/change_detection/data/{dataset}256/'
   
-    tra_image_dirA = 'trainAUG/A/'
-    tra_image_dirB = 'trainAUG/B/'
-    tra_label_dir = 'trainAUG/label/'
+    tra_image_dirA = 'train/A/'
+    tra_image_dirB = 'train/B/'
+    tra_label_dir = '/home/jovyan/change_detection/CS-WSCDNet/result/SAMlabel/'
 
     val_image_dirA = 'val/A/'
     val_image_dirB = 'val/B/'
@@ -105,8 +106,8 @@ def main():
     label_ext = '.png'
     
   
-    model_dir = "epochs/BCD/checkpoint_AUG/"
-    sta_dir = "statistics/BCD_checkpoint_AUG.csv"
+    model_dir = f"epochs/{dataset}/checkpoint_AUG/"
+    sta_dir = f"statistics/{dataset}_checkpoint_AUG.csv"
 
     os.makedirs(model_dir, exist_ok=True)
 
@@ -119,7 +120,7 @@ def main():
 
     tra_img_name_listA = glob.glob(data_dir + tra_image_dirA + '*' + image_ext)
     tra_img_name_listB = glob.glob(data_dir + tra_image_dirB + '*' + image_ext)
-    tra_lbl_name_list = glob.glob(data_dir + tra_label_dir + '*' + image_ext)
+    tra_lbl_name_list = glob.glob(tra_label_dir + '*' + image_ext)
 
     print("---")
     print("train imagesA: ", len(tra_img_name_listA))
